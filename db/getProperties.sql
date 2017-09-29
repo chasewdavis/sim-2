@@ -1,1 +1,2 @@
-select * from $1
+select * from Properties
+where userid = $1
