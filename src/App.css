@@ -1,28 +1,114 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.login, .center_piece{
+  display: flex;
+  justify-content: center;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.login img{
+  width:100px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.login input{
+  border: 1px solid #afd4c0;
+  width: 70%;
+  height: 18px;
 }
 
-.App-intro {
-  font-size: large;
+.login_form, .form {
+  width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.login_form{
+  background-color: white;
+  position: relative;
+}
+
+.form{
+  background: linear-gradient(180deg, #e2f3ea , #ffffff );
+}
+
+.login_form p {
+  position: relative;
+  left:-150px;
+  font-size: 12px;
+  margin-bottom:0px;
+}
+
+.login_buttons_div {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 33%;
+}
+
+.login button{
+  background-color: #8AEA92;
+  width:70px;
+  border:none;
+  border-radius: 2px;
+  height: 20px;
+}
+
+#dark_green{
+  background-color: #3b5249;
+  color:white;
+}
+
+.nav_bar{
+  width: 100vw;
+  height: 45px;
+  background-color: #519872;
+  display: flex;
+  justify-content: center;
+}
+
+.nav_center{
+  position: relative;
+  /* border:1px solid black; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: stretch;
+  width: 520px;
+  color:white;
+}
+
+.nav_center button{
+  position: absolute;
+  right:10px;
+  color:white;
+  background-color: rgba(0,0,0,0);
+  font-size:12px;
+  border:none;
+}
+
+.nav_center img{
+  margin:0 12px;
+  width:25px;
+}
+
+/* strong{
+  font-style: 
+} */
+
+.white {
+  color:white;
+  text-decoration: none;
+}
+
+.black {
+  color:black;
+  text-decoration: none;
 }

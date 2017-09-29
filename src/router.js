@@ -16,7 +16,7 @@ export default (
         <Route path='/nav' render={() => (
                 <Nav>
                         <Route path='/nav/dash' component={Dash} />
-                        <Route path='/wizard' component={Wizard} />
+                        <Route path='/nav/wizard' component={Wizard} />
                         <Route path='/nav/wizone' component={WizOne} />
                         <Route path='/nav/wiztwo' component={WizTwo} />
                         <Route path='/nav/wizthree' component={WizThree} />
