@@ -10,12 +10,14 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use(express.static(`${__dirname}/public/build`))
 
-const CONNECTION_STRING = process.env.CONNECTION_STRING;
+massive(process.env.CONNECTION_STRING).then(db => app.set('db', db))
+
 const PORT = process.env.PORT  ||  3001;
 const URL = require('./url/url');
+const controller = require('./controller/controller');
 
 
-
+app.post(`${URL}/register`, controller.registerUser);
 
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`))
