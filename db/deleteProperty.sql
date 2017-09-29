@@ -1,2 +1,2 @@
-delete from $1
-where property = $2
+delete from Properties
+where property = $1
