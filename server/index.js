@@ -32,11 +32,11 @@ app.get('/api/housing/getusers', controller.getUsers)
 
 app.post(`${URL}/register`, controller.registerUser);
 app.post(`${URL}/login`, controller.login);
-app.post(`${URL}/wizard/:username`, controller.addPropertyToUser);
+app.post(`${URL}/wizard/:userid`, controller.addPropertyToUser);
 
-app.get(`${URL}/properties/:username`, controller.getPropertiesByUser);
+app.get(`${URL}/properties/:userid`, controller.getPropertiesByUser);
 
-app.delete(`${URL}/properties/:username`, controller.deletePropertyFromUser);
+app.delete(`${URL}/properties/:userid`, controller.deletePropertyFromUser);
 
 
 
