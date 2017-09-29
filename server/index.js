@@ -16,22 +16,28 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+
+massive(process.env.CONNECTION_STRING).then(db => {
+    app.set('db', db)
+})
+
 app.use(checkForSession);
 
-massive(process.env.CONNECTION_STRING).then(db => app.set('db', db))
-
-const PORT = process.env.PORT  ||  3001;
+const PORT = process.env.PORT || 3001;
 const URL = require('./url/url');
 const controller = require('./controller/controller');
 
 
+app.get('/api/housing/getusers', controller.getUsers)
 
 app.post(`${URL}/register`, controller.registerUser);
 app.post(`${URL}/login`, controller.login);
-app.post(`${URL}/wizard/:user`, controller.addPropertyToUser);
-app.get(`${URL}/properties/:user`, controller.getPropertiesByUser);
-app.delete(`${URL}/properties/:user`, controller.deletePropertyFromUser);
+app.post(`${URL}/wizard/:username`, controller.addPropertyToUser);
+
+app.get(`${URL}/properties/:username`, controller.getPropertiesByUser);
+
+app.delete(`${URL}/properties/:username`, controller.deletePropertyFromUser);
 
 
 
-app.listen(PORT, () => console.log(`listening on port ${PORT}`))
+app.listen(PORT, console.log(`listening on port ${PORT}`))

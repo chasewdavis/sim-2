@@ -1,1 +1,1 @@
-URL='/api/housing'
+module.exports = URL =  '/api/housing'
