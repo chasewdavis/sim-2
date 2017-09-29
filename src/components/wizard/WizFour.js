@@ -10,8 +10,9 @@ export default class WizFour extends Component {
                     <input onChange={e => setAmount(e.target.value)}/>
                     <h2> Monthly Mortgage </h2>
                     <input onChange={e => setMortgage(e.target.value)}/>
-                    <button onClick ={next}> Previous Step </button>
-                    <button onClick ={previous}> Next Step </button>
+                    <button onClick ={previous}> Previous Step </button>
+                    <button onClick ={next}> Next Step </button>
+                   
                 </div>
             </div>
         )
