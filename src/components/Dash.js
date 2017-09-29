@@ -5,7 +5,12 @@ export default class Dash extends Component {
         return (
             <div className='center_piece'>
                 <div className='form'>
-                dash
+                    <div>
+                    <button id='add_new'>Add new property</button>
+                    </div>
+                    <div className='filter_row'>
+                        <p>List properties with "desired rent" greator than: $</p><input placeholder='0'></input><button>Filter</button><button>Reset</button>
+                    </div>
                 </div>
             </div>
         )
