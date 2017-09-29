@@ -120,7 +120,7 @@ export default class Wizard extends Component {
                 return (
                     <div className='center_piece'>
                         <div className='form'>
-                            <WizTwo next={next} setCity={setCity} setAddress={setAddress} updateState={updateState} setZip={setZip} />
+                            <WizTwo previous={previous} next={next} setCity={setCity} setAddress={setAddress} updateState={updateState} setZip={setZip} />
                         </div>
                     </div>
                 )
@@ -128,7 +128,7 @@ export default class Wizard extends Component {
                 return (
                     <div className='center_piece'>
                         <div className='form'>
-                            <WizThree next={next} setImgurl={setImgurl} />
+                            <WizThree previous={previous} next={next} setImgurl={setImgurl} />
                         </div>
                     </div>
                 )
@@ -136,7 +136,7 @@ export default class Wizard extends Component {
                 return (
                     <div className='center_piece'>
                         <div className='form'>
-                            <WizFour next={next} setLoan={setLoan} setMortgage={setMortgage} />
+                            <WizFour previous={previous} next={next} setLoan={setLoan} setMortgage={setMortgage} />
                         </div>
                     </div>
                 )
@@ -144,7 +144,7 @@ export default class Wizard extends Component {
                 return (
                     <div className='center_piece'>
                         <div className='form'>
-                            <WizFive complete={complete} setRent={setRent} />
+                            <WizFive previous={previous} complete={complete} setRent={setRent} />
                         </div>
                     </div>
                 )
