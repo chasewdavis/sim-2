@@ -6,22 +6,25 @@ module.exports = {
             .then(res.status(200).send(username))
             .catch(() => res.status(500).send('something went wrong'))
     },
-    login: () => {
+    login: (req, res, next) => {
         if (req.body.username && req.body.password) {
-            const db = req.app.get('db')
             let { username, password } = req.body
+            const db = req.app.get('db')
             db.selectUser(username, password)
                 .then(user => {
                     req.session.username = user.username
                     req.session.userid = user.userid
-                    res.status(200).send()
+                    res.status(200).send(`successfully logged in ${req.body.username}`)
                 })
+        }
+        else {
+            res.status(500).send('something went wrong')
         }
     },
     addPropertyToUser: (req, res, next) => {
         const db = req.app.get('db');
         let { userid } = req.session
-        let { userid, property, description, address, city, state, zip, imgurl, loan, mortgage, rent } = req.body
+        let { property, description, address, city, state, zip, imgurl, loan, mortgage, rent } = req.body
         db.addProperty(property, description, address, city, state, zip, imgurl, mortgage, rent)
             .then(res.status(200).send(username))
             .catch(() => res.status(500).send('something went wrong'))
