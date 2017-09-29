@@ -4,6 +4,7 @@ import WizTwo from './WizTwo';
 import WizThree from './WizThree';
 import WizFour from './WizFour';
 import WizFive from './WizFive';
+import axios from 'axios';
 
 export default class Wizard extends Component {
 
@@ -37,6 +38,11 @@ export default class Wizard extends Component {
         this.complete = this.complete.bind(this);
     }
 
+    complete() {
+        console.log('completed')
+        axios.post()
+    }
+
     previous() {
         this.setState({
             wizard: this.state.wizard - 1
@@ -47,10 +53,6 @@ export default class Wizard extends Component {
         this.setState({
             wizard: this.state.wizard + 1
         })
-    }
-
-    complete() {
-        console.log('completed')
     }
 
     setProperty(val) {
