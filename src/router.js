@@ -16,13 +16,13 @@ export default (
         <Route path='/nav' render={() => {
             return (
                 <Switch>
-                    <Route exact path='/dash' component={Login} />
-                    <Route exact path='/wizard' component={Wizard} />
-                    <Route exact path='/wizone' component={WizOne} />
-                    <Route exact path='/wiztwo' component={WizTwo} />
-                    <Route exact path='/wizthree' component={WizThree} />
-                    <Route exact path='/wizfour' component={WizFour} />
-                    <Route exact path='/wizfive' component={WizFive} />
+                    <Route exact path='/nav/dash' component={Login} />
+                    <Route exact path='/nav/wizard' component={Wizard} />
+                    <Route exact path='/nav/wizone' component={WizOne} />
+                    <Route exact path='/nav/wiztwo' component={WizTwo} />
+                    <Route exact path='/nav/wizthree' component={WizThree} />
+                    <Route exact path='/nav/wizfour' component={WizFour} />
+                    <Route exact path='/nav/wizfive' component={WizFive} />
                 </Switch>
             )
         }} />
