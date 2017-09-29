@@ -13,18 +13,17 @@ import WizFive from './components/wizard/WizFive.js';
 export default (
     <Switch>
         <Route exact path='/' component={Login} />
-        <Route path='/nav' render={() => {
-            return (
-                <Switch>
-                    <Route exact path='/nav/dash' component={Login} />
-                    <Route exact path='/nav/wizard' component={Wizard} />
-                    <Route exact path='/nav/wizone' component={WizOne} />
-                    <Route exact path='/nav/wiztwo' component={WizTwo} />
-                    <Route exact path='/nav/wizthree' component={WizThree} />
-                    <Route exact path='/nav/wizfour' component={WizFour} />
-                    <Route exact path='/nav/wizfive' component={WizFive} />
-                </Switch>
-            )
-        }} />
+        <Route path='/nav' render={() => (
+                <Nav>
+                        <Route path='/nav/dash' component={Dash} />
+                        <Route path='/wizard' component={Wizard} />
+                        <Route path='/nav/wizone' component={WizOne} />
+                        <Route path='/nav/wiztwo' component={WizTwo} />
+                        <Route path='/nav/wizthree' component={WizThree} />
+                        <Route path='/nav/wizfour' component={WizFour} />
+                        <Route path='/nav/wizfive' component={WizFive} />
+                </Nav>
+        )} />
+        
     </Switch>
 )
