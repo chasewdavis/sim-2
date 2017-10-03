@@ -4,5 +4,6 @@ module.exports = function checkForSession(req, res, next) {
             username: ""
         }
     }
+    console.log(req.session.user)
     next();
 }

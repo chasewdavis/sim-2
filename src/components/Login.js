@@ -14,13 +14,11 @@ export default class Login extends Component {
     }
 
     handleChangeU(value){
-        console.log(value);
         this.setState({
             username: value
         })
     }
     handleChangeP(value){
-        console.log(value);
         this.setState({
             password: value
         })

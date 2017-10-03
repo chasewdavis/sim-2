@@ -33,6 +33,7 @@ app.get('/api/housing/getusers', controller.getUsers)
 app.post(`${URL}/register`, controller.registerUser);
 app.post(`${URL}/login`, controller.login);
 app.post(`${URL}/wizard/`, controller.addPropertyToUser);
+app.post(`${URL}/logout`, controller.logout);
 
 app.get(`${URL}/properties/`, controller.getPropertiesByUser);
 

@@ -8,9 +8,9 @@ export default class WizFive extends Component {
                 <div className='form'>
                     <h2> Desired Rent </h2>
                     <input onChange={e => setRent(e.target.value)}/>
-                    <button onClick ={complete}>Complete</button>
-                    <button onClick ={previous}> Previous Step </button>
-            </div>
+                    <button onClick ={previous}> previous </button>
+                    <button onClick={complete}>complete</button>
+                </div>
             </div>
         )
     }

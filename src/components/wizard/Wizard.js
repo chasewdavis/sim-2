@@ -5,6 +5,7 @@ import WizThree from './WizThree';
 import WizFour from './WizFour';
 import WizFive from './WizFive';
 import axios from 'axios';
+import url from '../../url/url';
 
 export default class Wizard extends Component {
 
@@ -40,7 +41,8 @@ export default class Wizard extends Component {
 
     complete() {
         console.log('completed')
-        axios.post()
+        console.log(this.state)
+        axios.post(`${url}/wizard`, this.state).then(response => console.log(response))
     }
 
     previous() {
@@ -50,6 +52,7 @@ export default class Wizard extends Component {
     }
 
     next() {
+        console.log(this.state)
         this.setState({
             wizard: this.state.wizard + 1
         })
