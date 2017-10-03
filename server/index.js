@@ -36,6 +36,7 @@ app.post(`${URL}/wizard/`, controller.addPropertyToUser);
 app.post(`${URL}/logout`, controller.logout);
 
 app.get(`${URL}/properties/`, controller.getPropertiesByUser);
+app.get(`${URL}/getallproperties`, controller.getAllProperties)
 
 app.delete(`${URL}/properties/`, controller.deletePropertyFromUser);
 

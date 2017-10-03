@@ -3,7 +3,7 @@ module.exports = {
         const db = req.app.get('db')
         let { username, password } = req.body
         db.addUser(username, password)
-            .then(res.status(200).send(username))
+            .then(res.status(200).send({ username, password }))
             .catch(() => res.status(500).send('something went wrong'))
     },
     login: (req, res, next) => {
@@ -14,7 +14,8 @@ module.exports = {
                 .then(user => {
                     req.session.user.username = user[0].username
                     req.session.user.userid = user[0].userid
-                    res.status(200).send(`successfully logged in ${req.body.username}`)
+                    console.log(req.session.user)
+                    res.status(200).send(req.session.user)
                 })
         }
         else {
@@ -58,5 +59,9 @@ module.exports = {
     getUsers: (req, res, next) => {
         const db = req.app.get('db')
         db.getUsers().then(users => res.send(users))
+    },
+    getAllProperties: (req, res, next) => {
+        const db = req.app.get('db')
+        db.getAllProperties().then(properties => res.send(properties))
     }
 }

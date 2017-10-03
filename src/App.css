@@ -32,7 +32,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center; */
-  height: 100vh;
   background: linear-gradient(180deg, #e2f3ea , #ffffff );
   /* padding: 20px; */
 }
@@ -184,7 +183,6 @@ hr{
 .listing{
   border: 1px solid black;
   width:93%;
-  height:79px;
   background-color:#f0f0f0; 
   margin-bottom: 20px;
 }

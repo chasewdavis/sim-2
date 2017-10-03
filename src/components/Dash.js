@@ -9,9 +9,16 @@ export default class Dash extends Component {
         this.state = {
             listings: []
         }
+        //this.getProperties = this.getProperties.bind(this);
     }
     componentDidMount() {
-        axios.get(`${url}/properties`)
+        axios.get(`${url}/getallproperties`).then(res => {
+            console.log(res)
+            this.setState({
+                listings: res.data
+            })
+        })
+        console.log(this.state.listings)
     }
     render() {
         return (
@@ -29,12 +36,25 @@ export default class Dash extends Component {
                     <div className='listing_div'>
                         <h5>Home Listings</h5>
                         {
-                            this.state.listings.map(listing => {
-                                return <div className="listing">{listing}</div>
+                            this.state.listings.map((listing, i) => {
+                                console.log(listing)
+                                return (
+                                    <div className="listing" key={i} >
+                                        <p>{listing.property}</p>
+                                        <p>{listing.description}</p>
+                                        <p>Address: {listing.address}</p>
+                                        <p>City: {listing.city}</p>
+                                        <p>State: {listing.state}</p>
+                                        <p>Zip: {listing.zip}</p>
+                                        <p>{listing.imgurl}</p>
+                                        <p>Mortgage: ${listing.mortgage}</p>
+                                        <p>Loan: ${listing.loan}</p>
+                                        <p>Rent: ${listing.rent}</p>
+                                    </div>
+                                )
                             })
                         }
-                        <div className='listing'></div>
-                        <div className='listing'></div>
+                        {/* <button onClick={this.getProperties} >GET PROPERTIES</button> */}
                     </div>
                 </div>
             </div>

@@ -25,11 +25,11 @@ export default class Login extends Component {
     }
 
     login(){
-        axios.post(`${axiosURL}/login`,{ username:this.state.username, password:this.state.password}).then(res=>console.log('getting a response of ' + res.data))
+        axios.post(`${axiosURL}/login`,{ username:this.state.username, password:this.state.password}).then(res=>console.log(`successfully logged in ${res.data.username} with id ${res.data.userid}`))
     }
 
     register(){
-        axios.post(`${axiosURL}/register`,{ username:this.state.username, password:this.state.password}).then(res=>console.log('getting a response of ' + res.data))
+        axios.post(`${axiosURL}/register`,{ username:this.state.username, password:this.state.password}).then(res=>console.log(`successfully registered ${res.data.username}`))
     }
 
 
