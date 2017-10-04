@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import WizOne from './WizOne';
 import WizTwo from './WizTwo';
 import WizThree from './WizThree';
@@ -6,6 +7,7 @@ import WizFour from './WizFour';
 import WizFive from './WizFive';
 import axios from 'axios';
 import url from '../../url/url';
+import './Wizard.css';
 
 export default class Wizard extends Component {
 
@@ -37,13 +39,14 @@ export default class Wizard extends Component {
         this.setRent = this.setRent.bind(this);
         this.previous = this.previous.bind(this);
         this.complete = this.complete.bind(this);
+        this.cancel = this.cancel.bind(this);
     }
 
     complete() {
         let { property, description, address, city, state, zip, imgurl, mortgage, loan, rent } = this.state
         console.log('completed')
         console.log(this.state)
-        axios.post(`${url}/wizard`, {property, description, address, city, state, zip, imgurl, mortgage, loan, rent}).then(response => console.log(response.data))
+        axios.post(`${url}/wizard`, { property, description, address, city, state, zip, imgurl, mortgage, loan, rent }).then(response => console.log(response.data))
     }
 
     previous() {
@@ -56,6 +59,22 @@ export default class Wizard extends Component {
         console.log(this.state)
         this.setState({
             wizard: this.state.wizard + 1
+        })
+    }
+
+    cancel() {
+        this.setState({
+            property: '',
+            description: '',
+            address: '',
+            city: '',
+            state: '',
+            zip: '',
+            imgurl: '',
+            mortgage: '',
+            loan: '',
+            rent: '',
+            wizard: 1
         })
     }
 
@@ -112,56 +131,113 @@ export default class Wizard extends Component {
     }
 
     render() {
-        let { previous, complete, next, setProperty, setDescription, setAddress, setCity, updateState, setZip, setImgurl, setLoan, setMortgage, setRent } = this
+        let { previous, complete, next, cancel, setProperty, setDescription, setAddress, setCity, updateState, setZip, setImgurl, setLoan, setMortgage, setRent } = this
+
+        let wizard = <WizOne next={next} setProperty={setProperty} setDescription={setDescription} />
+
+        let wiz = this.state.wizard;
+
         switch (this.state.wizard) {
             case 1:
-                return (
-                    <div className='center_piece'>
-                        <div className='form'>
-                            <WizOne next={next} setProperty={setProperty} setDescription={setDescription} />
-                        </div>
-                    </div>
-                )
+                wizard = <WizOne next={next} setProperty={setProperty} setDescription={setDescription} />
+                break;
             case 2:
-                return (
-                    <div className='center_piece'>
-                        <div className='form'>
-                            <WizTwo previous={previous} next={next} setCity={setCity} setAddress={setAddress} updateState={updateState} setZip={setZip} />
-                        </div>
-                    </div>
-                )
+                wizard = <WizTwo previous={previous} next={next} setCity={setCity} setAddress={setAddress} updateState={updateState} setZip={setZip} />
+                break;
             case 3:
-                return (
-                    <div className='center_piece'>
-                        <div className='form'>
-                            <WizThree previous={previous} next={next} setImgurl={setImgurl} />
-                        </div>
-                    </div>
-                )
+                wizard = <WizThree previous={previous} next={next} setImgurl={setImgurl} />
+                break;
             case 4:
-                return (
-                    <div className='center_piece'>
-                        <div className='form'>
-                            <WizFour previous={previous} next={next} setLoan={setLoan} setMortgage={setMortgage} />
-                        </div>
-                    </div>
-                )
+                wizard = <WizFour previous={previous} next={next} setLoan={setLoan} setMortgage={setMortgage} />
+                break;
             case 5:
-                return (
-                    <div className='center_piece'>
-                        <div className='form'>
-                            <WizFive previous={previous} complete={complete} setRent={setRent} />
-                        </div>
-                    </div>
-                )
+                wizard = <WizFive previous={previous} complete={complete} setRent={setRent} />
+                break;
             default:
-                return (
-                    <div className='center_piece'>
-                        <div className='form'>
-                            <WizOne />
+                wizard = <WizOne next={next} setProperty={setProperty} setDescription={setDescription} />
+        }
+
+        return (
+            <div className='center_piece'>
+                <div className='form'>
+                    <div className='wiz-header' >
+                        <h1>Add New Listing</h1>
+                        <Link to='/nav/dash' className="button cancel" onClick={cancel}>cancel</Link>
+                    </div>
+                    <p className='step'>Step {wiz}</p>
+                    <div className='step-counter'>
+                        <div className='circle-outer'>
+                            <div className={wiz > 1 ? 'circle-inner completed' : 'circle-inner'} />
+                        </div>
+                        <div className='circle-outer'>
+                            <div className={wiz === 2 ? 'circle-inner' : wiz > 2 ? 'circle-inner completed' : 'future'} />
+                        </div>
+                        <div className='circle-outer'>
+                            <div className={wiz === 3 ? 'circle-inner' : wiz > 3 ? 'circle-inner completed' : 'future'} > </div>
+                        </div>
+                        <div className='circle-outer'>
+                            <div className={wiz === 4 ? 'circle-inner' : wiz > 4 ? 'circle-inner completed' : 'future'} />
+                        </div>
+                        <div className='circle-outer'>
+                            <div className={wiz === 5 ? 'circle-inner' : wiz > 5 ? 'circle-inner completed' : 'future'} />
                         </div>
                     </div>
-                )
-        }
+                    <div className='wizard-container'>
+                        {wizard}
+                    </div>
+                </div>
+            </div>
+        )
+
+        // switch (this.state.wizard) {
+        //     case 1:
+        //         return (
+        //             <div className='center_piece'>
+        //                 <div className='form'>
+        //                     <WizOne next={next} setProperty={setProperty} setDescription={setDescription} cancel={cancel} />
+        //                 </div>
+        //             </div>
+        //         )
+        //     case 2:
+        //         return (
+        //             <div className='center_piece'>
+        //                 <div className='form'>
+        //                     <WizTwo previous={previous} next={next} setCity={setCity} setAddress={setAddress} updateState={updateState} setZip={setZip} cancel={cancel} />
+        //                 </div>
+        //             </div>
+        //         )
+        //     case 3:
+        //         return (
+        //             <div className='center_piece'>
+        //                 <div className='form'>
+        //                     <WizThree previous={previous} next={next} setImgurl={setImgurl} cancel={cancel} />
+        //                 </div>
+        //             </div>
+        //         )
+        //     case 4:
+        //         return (
+        //             <div className='center_piece'>
+        //                 <div className='form'>
+        //                     <WizFour previous={previous} next={next} setLoan={setLoan} setMortgage={setMortgage} cancel={cancel} />
+        //                 </div>
+        //             </div>
+        //         )
+        //     case 5:
+        //         return (
+        //             <div className='center_piece'>
+        //                 <div className='form'>
+        //                     <WizFive previous={previous} complete={complete} setRent={setRent} cancel={cancel} />
+        //                 </div>
+        //             </div>
+        //         )
+        //     default:
+        //         return (
+        //             <div className='center_piece'>
+        //                 <div className='form'>
+        //                     <WizOne />
+        //                 </div>
+        //             </div>
+        //         )
+        // }
     }
 }

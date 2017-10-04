@@ -1,0 +1,55 @@
+
+.wiz-header {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;    
+}
+
+.wiz-header {
+    text-align: center;    
+}
+
+.step-counter {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.step {
+    text-align: center;
+}
+
+.wizard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.circle-outer {
+    height: 2rem;
+    width: 2rem;
+    background: #AFD4C0;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.8rem;
+}
+
+.circle-inner {
+    height: 1.6rem;
+    width: 1.6rem;
+    border-radius: 0.8rem;
+    background: #519872;
+}
+
+.completed {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 1rem;
+    border: 0.2rem solid white;
+}
+
+.future {
+    display: none;
+}

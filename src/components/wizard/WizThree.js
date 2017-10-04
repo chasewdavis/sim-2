@@ -4,11 +4,11 @@ export default class WizThree extends Component {
     render() {
         let { previous, next, setImgurl } = this.props
         return (
-            <div className='WizThree'>
+            <div className='wizard'>
                 <h2>Image URL</h2>
                 <input onChange={e => setImgurl(e.target.value)} />
-                <button onClick={previous} >previous</button>
-                <button onClick={next} >next</button>
+                <button className="button previous" onClick={previous} >previous</button>
+                <button className="button next" onClick={next} >next</button>
             </div>
         )
     }
