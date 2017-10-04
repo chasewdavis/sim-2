@@ -1,5 +1,7 @@
-.App {
-  /* text-align: center; */
+
+* {
+  text-decoration: none;
+  font-family: 'calibri';
 }
 
 .login, .center_piece{
@@ -135,21 +137,27 @@
 }
 
 .filter_row p{
-  font-size:11px;
+  font-size:0.85rem;
 }
 
 .filter_row button {
   background-color: #8AEA92;
-  border:none;
+  border: none;
+  border-radius: 2.5px;
+  padding: 2px 6px;
+  font-weight: bold; 
 }
 
 #add_new{
   color:black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
   background-color: #8aea92;
-  border-radius: 2px;
-  height:30px;
+  border-radius: 3px;
   border:none;
   margin: 14px;
+  padding: 3px 8px;
 }
 
 .center{
@@ -172,17 +180,68 @@ hr{
   justify-content: center;
   align-items: center;
   align-content: space-around;
+  text-align: left;  
 }
 
-.listing_div h5{
+.listing-header {
   /* color:green; */
   /* margin-left:20px; */
-  margin-left:-391px;
+  width: 90%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .listing{
-  border: 1px solid black;
+  position: relative;
   width:93%;
-  background-color:#f0f0f0; 
+  background-color:#DDD; 
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.image {
+  min-width: 7rem;
+  background: #CCC;
+  border: none;
+}
+
+.property-box {
+  min-width: 7rem;
+  padding: 1rem;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.address-box {
+  min-width: 16rem;
+  max-width: 16rem;
+  margin: 0.3rem;
+  font-weight: bold;
+}
+
+.property-box p {
+  margin-bottom: 0.5rem;
+}
+
+.address-box p {
+  margin-bottom: 0.3rem;
+}
+
+.delete-button {
+  position: absolute;
+  background: none;
+  border: none;
+  color: white;
+  padding: 5px;
+}
+
+.delete-button:hover {
+  background: rgba(0,0,0,0.5)
 }

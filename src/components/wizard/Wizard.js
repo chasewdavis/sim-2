@@ -40,9 +40,10 @@ export default class Wizard extends Component {
     }
 
     complete() {
+        let { property, description, address, city, state, zip, imgurl, mortgage, loan, rent } = this.state
         console.log('completed')
         console.log(this.state)
-        axios.post(`${url}/wizard`, this.state).then(response => console.log(response))
+        axios.post(`${url}/wizard`, {property, description, address, city, state, zip, imgurl, mortgage, loan, rent}).then(response => console.log(response.data))
     }
 
     previous() {

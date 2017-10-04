@@ -30,10 +30,11 @@ module.exports = {
     },
     addPropertyToUser: (req, res, next) => {
         const db = req.app.get('db')
-        let { userid } = req.session
+        //let { userid } = req.session
+        console.log(req.body)
         let { property, description, address, city, state, zip, imgurl, loan, mortgage, rent } = req.body
-        db.addProperty(property, description, address, city, state, zip, imgurl, mortgage, rent)
-            .then(res.status(200).send(req.session.username))
+        db.addProperty([1, property, description, address, city, state, zip, imgurl, loan, mortgage, rent])
+            .then(res.status(200).send(`property ${property} successfully added`))
             .catch(() => res.status(500).send('something went wrong'))
     },
     deletePropertyFromUser: (req, res, next) => {
