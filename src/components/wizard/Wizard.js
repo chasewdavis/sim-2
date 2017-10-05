@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import WizOne from './WizOne';
-import WizTwo from './WizTwo';
-import WizThree from './WizThree';
-import WizFour from './WizFour';
-import WizFive from './WizFive';
+import WizOne from './wizards/WizOne';
+import WizTwo from './wizards/WizTwo';
+import WizThree from './wizards/WizThree';
+import WizFour from './wizards/WizFour';
+import WizFive from './wizards/WizFive';
 import axios from 'axios';
 import url from '../../url/url';
 import './Wizard.css';
@@ -26,6 +26,7 @@ export default class Wizard extends Component {
             rent: '',
             wizard: 1
         }
+        this.navigateWizard = this.navigateWizard.bind(this);
         this.next = this.next.bind(this);
         this.setProperty = this.setProperty.bind(this);
         this.setDescription = this.setDescription.bind(this);
@@ -40,6 +41,12 @@ export default class Wizard extends Component {
         this.previous = this.previous.bind(this);
         this.complete = this.complete.bind(this);
         this.cancel = this.cancel.bind(this);
+    }
+
+    navigateWizard(num) {
+        this.setState({
+            wizard: num
+        })
     }
 
     complete() {
@@ -131,7 +138,7 @@ export default class Wizard extends Component {
     }
 
     render() {
-        let { previous, complete, next, cancel, setProperty, setDescription, setAddress, setCity, updateState, setZip, setImgurl, setLoan, setMortgage, setRent } = this
+        let { navigateWizard, previous, complete, next, cancel, setProperty, setDescription, setAddress, setCity, updateState, setZip, setImgurl, setLoan, setMortgage, setRent } = this
 
         let wizard = <WizOne next={next} setProperty={setProperty} setDescription={setDescription} />
 
@@ -160,30 +167,32 @@ export default class Wizard extends Component {
         return (
             <div className='center_piece'>
                 <div className='form'>
-                    <div className='wiz-header' >
-                        <h1>Add New Listing</h1>
-                        <Link to='/nav/dash' className="button cancel" onClick={cancel}>cancel</Link>
-                    </div>
-                    <p className='step'>Step {wiz}</p>
-                    <div className='step-counter'>
-                        <div className='circle-outer'>
-                            <div className={wiz > 1 ? 'circle-inner completed' : 'circle-inner'} />
+                    <div className='wiz-container'>
+                        <div className='wiz-header' >
+                            <h1>Add New Listing</h1>
+                            <Link to='/nav/dash' className="button cancel" onClick={cancel}>cancel</Link>
                         </div>
-                        <div className='circle-outer'>
-                            <div className={wiz === 2 ? 'circle-inner' : wiz > 2 ? 'circle-inner completed' : 'future'} />
+                        <p className='step'>Step {wiz}</p>
+                        <div className='step-counter'>
+                            <div className='circle-outer' onClick={() => navigateWizard(1)} >
+                                <div className={wiz > 1 ? 'circle-inner completed' : 'circle-inner'} />
+                            </div>
+                            <div className='circle-outer' onClick={() => navigateWizard(2)} >
+                                <div className={wiz === 2 ? 'circle-inner' : wiz > 2 ? 'circle-inner completed' : 'future'} />
+                            </div>
+                            <div className='circle-outer' onClick={() => navigateWizard(3)} >
+                                <div className={wiz === 3 ? 'circle-inner' : wiz > 3 ? 'circle-inner completed' : 'future'} > </div>
+                            </div>
+                            <div className='circle-outer' onClick={() => navigateWizard(4)} >
+                                <div className={wiz === 4 ? 'circle-inner' : wiz > 4 ? 'circle-inner completed' : 'future'} />
+                            </div>
+                            <div className='circle-outer' onClick={() => navigateWizard(5)} >
+                                <div className={wiz === 5 ? 'circle-inner' : wiz > 5 ? 'circle-inner completed' : 'future'} />
+                            </div>
                         </div>
-                        <div className='circle-outer'>
-                            <div className={wiz === 3 ? 'circle-inner' : wiz > 3 ? 'circle-inner completed' : 'future'} > </div>
+                        <div className='form-container'>
+                            {wizard}
                         </div>
-                        <div className='circle-outer'>
-                            <div className={wiz === 4 ? 'circle-inner' : wiz > 4 ? 'circle-inner completed' : 'future'} />
-                        </div>
-                        <div className='circle-outer'>
-                            <div className={wiz === 5 ? 'circle-inner' : wiz > 5 ? 'circle-inner completed' : 'future'} />
-                        </div>
-                    </div>
-                    <div className='wizard-container'>
-                        {wizard}
                     </div>
                 </div>
             </div>

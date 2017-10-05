@@ -1,0 +1,125 @@
+
+.form {
+  width: 520px;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  background: linear-gradient(180deg, #e2f3ea , #ffffff );
+  min-height: 93vh;
+  /* padding: 20px; */
+}
+
+/****************DASHBOARD***************/
+
+.filter-row {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.filter-row input {
+  width:60px;
+}
+
+.filter-row p{
+  font-size:0.85rem;
+}
+
+.filter-row button {
+  background-color: #8AEA92;
+  border: none;
+  border-radius: 2.5px;
+  padding: 2px 6px;
+  font-weight: bold; 
+}
+
+/* .center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.listing-div{
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
+  text-align: left;  
+}
+
+.listing-header {
+  /* color:green; */
+  /* margin-left:20px; */
+  width: 90%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/*********************LISTINGS******************/
+
+.listing{
+  position: relative;
+  width:93%;
+  background-color:#DDD; 
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.image {
+  min-width: 7rem;
+  height: 7.1rem;
+  background: #CCC;
+  border: none;
+}
+
+.property-box {
+  min-width: 7rem;
+  padding: 1rem;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.address-box {
+  min-width: 16rem;
+  max-width: 16rem;
+  margin: 0.3rem;
+  margin-left: 0;
+  padding-left: 0.6rem;
+  border-left: 1px solid black;
+  font-weight: bold;
+}
+
+.property-box p {
+  margin-bottom: 0.5rem;
+}
+
+.address-box p {
+  margin-bottom: 0.3rem;
+}
+
+.delete-button {
+  position: absolute;
+  background: none;
+  border: none;
+  color: white;
+  padding: 5px;
+}
+
+.delete-button:hover {
+  background: rgba(0,0,0,0.5)
+}
+

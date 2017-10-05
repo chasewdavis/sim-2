@@ -1,12 +1,19 @@
 
+.wiz-container {
+    margin: 2vw 3vw;
+}
+/*******************HEADER******************/
 .wiz-header {
     display: flex;
     justify-content: space-between;
-    text-align: center;    
+    text-align: center;  
+    font-size: 1.2rem;  
 }
 
-.wiz-header {
-    text-align: center;    
+/******************COUNTER*******************/
+.step {
+    text-align: center;
+    margin-top: 0.8rem;
 }
 
 .step-counter {
@@ -15,8 +22,59 @@
     text-align: center;
 }
 
-.step {
-    text-align: center;
+.circle-outer {
+    height: 2rem;
+    width: 2rem;
+    background: #AFD4C0;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    transition: height width 0.2s;
+}
+
+.circle-outer:hover {
+    cursor: pointer;
+    height: 2.2rem;
+    width: 2.2rem;
+    margin: 0.9rem;
+}
+
+.circle-inner {
+    height: 1.6rem;
+    width: 1.6rem;
+    border-radius: 1rem;
+    background: #519872;
+    transition: height width 0.2s;
+}
+
+.circle-inner:hover {
+    height: 1.8rem;
+    width: 1.8rem;
+}
+
+.completed {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 1rem;
+    border: 0.17rem solid white;
+    transition: height width 0.2s;
+}
+
+.completed:hover {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+.future {
+    display: none;
+}
+
+/********************WIZARDFORM*********************/
+
+.form-container {
+    margin: 1rem 3rem;
 }
 
 .wizard {
@@ -25,31 +83,11 @@
     justify-content: center;
 }
 
-.circle-outer {
-    height: 2rem;
-    width: 2rem;
-    background: #AFD4C0;
-    border-radius: 1rem;
+.wizard * {
+    margin-bottom: 1rem;
+}
+
+.button-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.8rem;
-}
-
-.circle-inner {
-    height: 1.6rem;
-    width: 1.6rem;
-    border-radius: 0.8rem;
-    background: #519872;
-}
-
-.completed {
-    height: 1rem;
-    width: 1rem;
-    border-radius: 1rem;
-    border: 0.2rem solid white;
-}
-
-.future {
-    display: none;
+    justify-content: space-around;
 }
