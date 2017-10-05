@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import axiosURL from '../../url/url';
 import './Login.css';
+import { connect } from 'react-redux';
+import { login, setUsername, setPassword } from '../../ducks/reducer';
 
-export default class Login extends Component {
-
+class Login extends Component {
     constructor() {
         super()
         this.state = {
@@ -14,31 +15,33 @@ export default class Login extends Component {
         }
     }
 
-    handleChangeU(value) {
-        this.setState({
-            username: value
-        })
-    }
-    handleChangeP(value) {
-        this.setState({
-            password: value
-        })
-    }
+    // handleChangeU(value) {
+    //     this.setState({
+    //         username: value
+    //     })
+    // }
 
-    login() {
-        axios.post(`${axiosURL}/login`, { username: this.state.username, password: this.state.password })
-            .then(res => {
-                console.log(`successfully logged in ${res.data.username} with id ${res.data.userid}`)
-            })
-    }
+    // handleChangeP(value) {
+    //     this.setState({
+    //         password: value
+    //     })
+    // }
+
+    // login() {
+    //     axios.post(`${axiosURL}/login`, { username: this.state.username, password: this.state.password })
+    //         .then(res => {
+    //             console.log(`successfully logged in ${res.data.username} with id ${res.data.userid}`)
+    //             return res.data.userid
+    //         })
+    // }
 
     register() {
         axios.post(`${axiosURL}/register`, { username: this.state.username, password: this.state.password }).then(res => console.log(`successfully registered ${res.data.username}`))
     }
 
-
-
     render() {
+        console.log(this.props)
+        let { login, setUsername, setPassword } = this.props
         return (
             <div className='login'>
                 <div className='login-page'>
@@ -47,15 +50,15 @@ export default class Login extends Component {
                     <div className='login-form'>
                         <p className='login-header' >Username</p>
 
-                        <input className='input login-input' onChange={(e) => this.handleChangeU(e.target.value)}></input>
+                        <input className='input login-input' onChange={(e) => setUsername(e.target.value)}></input>
 
                         <p className='login-header' >Password</p>
 
-                        <input className='input login-input' onChange={(e) => this.handleChangeP(e.target.value)} type='password'></input>
+                        <input className='input login-input' onChange={(e) => setPassword(e.target.value)} type='password'></input>
 
                         <div className='login-buttons'>
 
-                            <Link onClick={() => this.login()} className='button complete' to='/nav/dash'>Login</Link>
+                            <Link onClick={() => login()} className='button complete' to='/nav/dash'>Login</Link>
 
                             <Link onClick={() => this.register()} className='button' to='/nav/dash'>Register</Link>
 
@@ -66,3 +69,15 @@ export default class Login extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return state;
+}
+
+let outActions = {
+    login,
+    setUsername,
+    setPassword
+}
+
+export default connect(mapStateToProps, outActions)(Login)

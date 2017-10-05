@@ -9,11 +9,11 @@ export default (
     <Switch>
         <Route exact path='/' component={Login} />
         <Route path='/nav' render={() => (
-                <Nav>
-                        <Route path='/nav/dash' component={Dash} />
-                        <Route path='/nav/wizard' component={Wizard} />
-                </Nav>
+            <Nav>
+                <Route path='/nav/dash' component={Dash} />
+                <Route path='/nav/wizard' component={Wizard} />
+            </Nav>
         )} />
-        
+
     </Switch>
 )

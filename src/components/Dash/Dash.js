@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import url from '../../url/url';
 import './Dash.css';
+import { connect } from 'react-redux';
+import { getProperties, filterRent, setFilter } from '../../ducks/reducer'; 
 
-export default class Dash extends Component {
+class Dash extends Component {
     constructor() {
         super()
         this.state = {
@@ -13,26 +15,27 @@ export default class Dash extends Component {
             rentInput: 0
         }
         //this.getProperties = this.getProperties.bind(this);
-        this.filterRent = this.filterRent.bind(this);
+        //this.filterRent = this.filterRent.bind(this);
     }
-    componentDidMount() {
-        axios.get(`${url}/getallproperties`).then(res => {
-            this.setState({
-                listings: res.data
-            })
-        })
-    }
-    filterRent() {
-        this.setState({
-            rentFilter: this.state.rentInput
-        })
-    }
-    handleFilterChange(num) {
-        this.setState({
-            rentInput: num
-        })
-    }
+    // componentDidMount() {
+    //     axios.get(`${url}/getallproperties`).then(res => {
+    //         this.setState({
+    //             listings: res.data
+    //         })
+    //     })
+    // }
+    // filterRent() {
+    //     this.setState({
+    //         rentFilter: this.state.rentInput
+    //     })
+    // }
+    // handleFilterChange(num) {
+    //     this.setState({
+    //         rentInput: num
+    //     })
+    // }
     render() {
+        let { listings, getProperties, filterRent, setFilter } = this.props
         return (
             <div className='center_piece'>
                 <div className='form'>
@@ -41,15 +44,15 @@ export default class Dash extends Component {
                         <Link className='button add' to='/nav/wizard'>Add new property</Link>
 
                         <div className='filter-row'>
-                            <p>List properties with "desired rent" greator than: $ <input placeholder='0' onChange={e => this.handleFilterChange(e.target.value)} ></input></p>
-                            <button className='button complete' onClick={this.filterRent} >Filter</button>
+                            <p>List properties with "desired rent" greator than: $ <input className='input' placeholder='0' onChange={e => setFilter(e.target.value)} ></input></p>
+                            <button className='button complete' onClick={filterRent} >Filter</button>
                             <button className='button' >Reset</button>
                         </div>
 
                         <div className='listing-div'>
                             <div className="listing-header" ><p>Home Listings</p></div>
                             {
-                                this.state.listings.filter(listing => listing.rent > this.state.rentFilter).map((listing, i) => {
+                                listings.filter(listing => listing.rent > this.state.rentFilter).map((listing, i) => {
                                     return (
                                         <div className="listing" key={i} >
                                             <button className="delete-button" onClick={() => { }} >X</button>
@@ -77,3 +80,15 @@ export default class Dash extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return state;
+}
+
+let outActions = {
+    getProperties,
+    filterRent,
+    setFilter
+}
+
+export default connect(mapStateToProps, outActions)(Dash)
