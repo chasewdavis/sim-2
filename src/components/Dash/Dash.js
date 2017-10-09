@@ -4,38 +4,40 @@ import axios from 'axios';
 import url from '../../url/url';
 import './Dash.css';
 import { connect } from 'react-redux';
-import { getProperties, filterRent, setFilter } from '../../ducks/reducer'; 
+import { login, getProperties, filterRent, setFilter } from '../../ducks/reducer'; 
 
 class Dash extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            listings: [],
-            rentFilter: 0,
+            listings: [{}],
+            rentFilter: -1,
             rentInput: 0
         }
         //this.getProperties = this.getProperties.bind(this);
-        //this.filterRent = this.filterRent.bind(this);
+        this.filterRent = this.filterRent.bind(this);
     }
-    // componentDidMount() {
-    //     axios.get(`${url}/getallproperties`).then(res => {
-    //         this.setState({
-    //             listings: res.data
-    //         })
-    //     })
-    // }
-    // filterRent() {
-    //     this.setState({
-    //         rentFilter: this.state.rentInput
-    //     })
-    // }
-    // handleFilterChange(num) {
-    //     this.setState({
-    //         rentInput: num
-    //     })
-    // }
+    componentDidMount() {
+        let { userid } = this.props
+        console.log(userid)
+        axios.get(`${url}/properties/${userid}`).then(res => {
+            this.setState({
+                listings: res.data
+            })
+        })
+    }
+    filterRent() {
+        this.setState({
+            rentFilter: this.state.rentInput
+        })
+    }
+    handleFilterChange(num) {
+        this.setState({
+            rentInput: num
+        })
+    }
     render() {
-        let { listings, getProperties, filterRent, setFilter } = this.props
+        let { listings, getProperties, filterRent, setFilter } = this //.props
         return (
             <div className='center_piece'>
                 <div className='form'>
@@ -52,7 +54,7 @@ class Dash extends Component {
                         <div className='listing-div'>
                             <div className="listing-header" ><p>Home Listings</p></div>
                             {
-                                listings.filter(listing => listing.rent > this.state.rentFilter).map((listing, i) => {
+                                this.state.listings.filter(listing => !(listing.rent < this.state.rentFilter)).map((listing, i) => {
                                     return (
                                         <div className="listing" key={i} >
                                             <button className="delete-button" onClick={() => { }} >X</button>
@@ -86,9 +88,10 @@ function mapStateToProps(state) {
 }
 
 let outActions = {
+    login,
     getProperties,
     filterRent,
     setFilter
 }
 
-export default connect(mapStateToProps, outActions)(Dash)
+export default Dash //connect(mapStateToProps, outActions)(Dash)

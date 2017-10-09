@@ -6,7 +6,7 @@ const initialState = {
     password: '',
     userid: -1,
 
-    listings: [],
+    listings: [{}, {}],
     rentFilter: 0,
     rentInput: 0
 }
@@ -60,27 +60,35 @@ export function setFilter(payload) {
 }
 
 export default function reducer(state = initialState, action) {
+    let finalState = {}
     switch (action.type) {
         case SET_USERNAME:
             let username = action.payload
-            return Object.assign({}, state, { username })
+            finalState = Object.assign({}, state, { username })
+            break;
         case SET_PASSWORD:
             let password = action.payload
-            return Object.assign({}, state, { password })
+            finalState = Object.assign({}, state, { password })
+            break;
         case LOGIN:
             axios.post(`${axiosURL}/login`, { username: state.username, password: state.password })
                 .then(res => {
                     console.log(`successfully logged in ${res.data.username} with id ${res.data.userid}`)
-                    console.log(state)
-                    return Object.assign({}, state, { userid: action.payload })
+                    finalState = Object.assign({}, state, { userid: res.data.userid })
+                    // axios.get(`${axiosURL}/getallproperties`)
+                    //     .then(res => {
+                    //         console.log(res.data)
+                    //         finalState = Object.assign({}, newState, { listings: res.data })
+                    //         console.log(finalState)                            
+                    //     })
                 })
+            break;
         case GET_PROPERTIES:
-            axios.get(`${axiosURL}/getallproperties`)
-                .then(res => {
-                    console.log(res.data)
-                    return Object.assign({}, state, { listings: res.data })
-                })
+            
+            break;
         default:
-            return state;
+            finalState = state;
     }
+    //console.log(finalState)
+    return finalState
 }

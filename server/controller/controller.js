@@ -14,8 +14,8 @@ module.exports = {
                 .then(user => {
                     req.session.user.username = user[0].username
                     req.session.user.userid = user[0].userid
-                    console.log(req.session.user)
-                    res.status(200).send(req.session.user)
+                    //console.log(req.session.user)
+                    res.status(200).send(user[0])
                 })
         }
         else {
@@ -24,14 +24,14 @@ module.exports = {
     },
     logout: (req, res, next) => {
         let name = req.session.user.username
-        console.log(name)
+        //console.log(name)
         req.session.destroy()
         res.status(200).send(`successfully logged out ${name}`)
     },
     addPropertyToUser: (req, res, next) => {
         const db = req.app.get('db')
         //let { userid } = req.session
-        console.log(req.body)
+        //console.log(req.body)
         let { property, description, address, city, state, zip, imgurl, loan, mortgage, rent } = req.body
         db.addProperty([1, property, description, address, city, state, zip, imgurl, loan, mortgage, rent])
             .then(res.status(200).send(`property ${property} successfully added`))
@@ -47,8 +47,8 @@ module.exports = {
     },
     getPropertiesByUser: (req, res, next) => {
         const db = req.app.get('db')
-        let { userid } = req.session.user
-        console.log(req.session.user)
+        let { userid } = req.params
+        console.log(1, userid)
         db.getProperties(userid)
             .then(properties => res.status(200).send(properties))
             .catch(() => res.status(500).send('something went wrong'))

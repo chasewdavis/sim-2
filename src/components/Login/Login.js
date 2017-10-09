@@ -40,7 +40,6 @@ class Login extends Component {
     }
 
     render() {
-        console.log(this.props)
         let { login, setUsername, setPassword } = this.props
         return (
             <div className='login'>
